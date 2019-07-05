@@ -19,6 +19,13 @@ public class JoinSvr extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		request.setCharacterEncoding("UTF-8");
+		String id = request.getParameter("id");
+		String nm = request.getParameter("nm");
+		String pw = request.getParameter("pw");
+		
+		System.out.println("id : " + id);
+		System.out.println("nm : " + nm);
+		System.out.println("pw : " + pw);
 	}
 }
