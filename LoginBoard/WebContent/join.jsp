@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String msg = (String)request.getAttribute("msg");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +19,18 @@
 			확인비밀번호 : <input type="password" name="repw"><br>			
 			<input type="submit" value="회원가입">
 			<input type="reset" value="다시적기">
-		</form>		
+		</form>
+		<div>
+			<% if(msg != null) { %>
+				<span><%=msg %></span>
+			<% } %>
+		</div>		
 	</div>
 </body>
 </html>
+
+
+
+
+
+
