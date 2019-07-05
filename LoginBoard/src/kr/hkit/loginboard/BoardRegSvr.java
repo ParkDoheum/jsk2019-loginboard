@@ -10,16 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.hkit.loginboard.vo.UserVO;
+
 @WebServlet("/boardReg")
 public class BoardRegSvr extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String i_user = (String)session.getAttribute("i_user");
-		System.out.println("i_user : " + i_user);
+		UserVO vo = (UserVO)session.getAttribute("loginUser");
+		System.out.println("i_user : " + vo.getI_user());
 		
-		if(i_user == null || i_user.equals("")) {
+		int i_user = vo.getI_user();
+		if(i_user == 0) {
 			response.sendRedirect("list");
 			
 		} else {

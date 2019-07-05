@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.hkit.loginboard.dao.UserDAO;
+import kr.hkit.loginboard.vo.UserVO;
 
 @WebServlet("/login")
 public class LoginSvr extends HttpServlet {
@@ -29,7 +30,11 @@ public class LoginSvr extends HttpServlet {
 		System.out.println("id : " + id);
 		System.out.println("pw : " + pw);
 		
-		int result = UserDAO.login(id, pw);
+		UserVO vo = new UserVO();
+		vo.setId(id);
+		vo.setPw(pw);
+		
+		int result = UserDAO.login(vo);
 		switch(result) {
 		case 0: //id없음
 			request.setAttribute("msg", "아이디가 존재하지 않습니다.");
@@ -41,7 +46,7 @@ public class LoginSvr extends HttpServlet {
 			break;
 		default: //로그인
 			HttpSession session = request.getSession();
-			session.setAttribute("i_user", Integer.toString(result));
+			session.setAttribute("loginUser", vo);
 			
 			response.sendRedirect("list");
 			break;
