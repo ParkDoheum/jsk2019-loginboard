@@ -14,6 +14,9 @@
 	if(pw == null) {
 		pw = "";
 	}
+	
+	id = "ppp";
+	pw = "1212";
 %>    
 <!DOCTYPE html>
 <html>

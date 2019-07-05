@@ -19,8 +19,9 @@
 	%>
 	</div>
 	<div>
-		<button>등록</button>
-	</div>
-	list.jsp	
+		<% if(vo != null) { %>
+			<a href="boardReg"><button>글등록</button></a>
+		<% } %>
+	</div>	
 </body>
 </html>
