@@ -21,7 +21,7 @@ public class UserDAO {
 		try {
 			con = CommonDAO.getCon();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, id);			
+			ps.setString(1, id.trim());			
 			
 			rs = ps.executeQuery();
 			while(rs.next()) {				
@@ -53,9 +53,9 @@ public class UserDAO {
 		try {
 			con = CommonDAO.getCon();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, vo.getId());
-			ps.setString(2, vo.getPw());
-			ps.setString(3, vo.getNm());
+			ps.setString(1, vo.getId().trim());
+			ps.setString(2, vo.getPw().trim());
+			ps.setString(3, vo.getNm().trim());
 			
 			result = ps.executeUpdate();
 			

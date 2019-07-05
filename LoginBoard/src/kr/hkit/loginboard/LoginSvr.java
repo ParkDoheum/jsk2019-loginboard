@@ -1,12 +1,14 @@
 package kr.hkit.loginboard;
 
 import java.io.IOException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.hkit.loginboard.dao.UserDAO;
 
@@ -38,7 +40,10 @@ public class LoginSvr extends HttpServlet {
 			doGet(request, response);
 			break;
 		default: //로그인
+			HttpSession session = request.getSession();
+			session.setAttribute("i_user", Integer.toString(result));
 			
+			response.sendRedirect("list");
 			break;
 		}
 	}
