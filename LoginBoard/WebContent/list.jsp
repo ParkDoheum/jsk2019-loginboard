@@ -24,7 +24,7 @@ if(vo != null) {
 		<% for(BoardVO item : list) {	%>
 		<tr>
 			<td><%=item.getI_board() %></td>
-			<td><%=item.getTitle() %></td>
+			<td><a href="boardDetail?i_board=<%=item.getI_board() %>"><%=item.getTitle() %></a></td>
 			<td><%=item.getRdate() %></td>
 			<td><%=item.getUser_nm() %></td>
 		</tr>
