@@ -18,8 +18,16 @@ public class LoginSvr extends HttpServlet {
 	private static final long serialVersionUID = 1L;		
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-		rd.forward(request, response);
+		//HttpSession ss = request.getSession();
+		//UserVO uVo = (UserVO) ss.getAttribute("loginUser");
+		
+		UserVO uVo = (UserVO) request.getSession().getAttribute("loginUser");
+		if(uVo == null) {
+			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+			rd.forward(request, response);			
+		} else {
+			response.sendRedirect("list");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
