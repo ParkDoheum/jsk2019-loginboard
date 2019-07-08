@@ -11,6 +11,36 @@ import kr.hkit.loginboard.vo.BoardVO;
 
 public class BoardDAO {
 	
+	public static int delBoard(BoardVO vo) {
+		int result = 0;
+		
+		if(vo == null) {
+			return result;
+		}
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		String sql = " DELETE FROM t_board WHERE i_board = ? and i_user = ? ";
+	
+			
+		try {
+			con = CommonDAO.getCon();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, vo.getI_board());
+			ps.setInt(2,  vo.getI_user());
+			
+			result = ps.executeUpdate();
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			CommonDAO.close(con, ps, null);
+		}
+		
+		return result;
+	}
+	
 	public static BoardVO getBoard(String i_board) {
 		return getBoard(Integer.parseInt(i_board));
 	}

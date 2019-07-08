@@ -4,6 +4,7 @@
 <%	
 	UserVO userVO = (UserVO) session.getAttribute("loginUser");
 	BoardVO boardVO = (BoardVO) request.getAttribute("vo");	
+	String msg = (String)request.getAttribute("msg");
 %>
 
 <div>
@@ -14,6 +15,18 @@
 <div>
 	<% if(userVO != null && userVO.getI_user() == boardVO.getI_user()) {%>
 		<button>수정</button>
-		<button>삭제</button>	
+		<a href="boardDel?i_board=<%=boardVO.getI_board()%>"><button>삭제</button></a>	
 	<% } %>
 </div>
+<div>
+	<%
+		if(msg != null) {
+			out.print(msg);	
+		}
+	%>
+</div>
+
+
+
+
+

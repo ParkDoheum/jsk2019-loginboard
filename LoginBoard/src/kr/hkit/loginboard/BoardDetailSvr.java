@@ -17,6 +17,13 @@ public class BoardDetailSvr extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String err = request.getParameter("err");
+		if(err != null) {
+			if(err.equals("1")) {
+				request.setAttribute("msg", "삭제할 수 없습니다.");
+			}
+		}
+		
 		String i_board = request.getParameter("i_board");
 		BoardVO vo = BoardDAO.getBoard(i_board);
 		request.setAttribute("vo", vo);		
