@@ -18,17 +18,11 @@ import kr.hkit.loginboard.vo.UserVO;
 public class BoardRegSvr extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		UserVO vo = (UserVO)session.getAttribute("loginUser");
-		
-		if(vo == null) {
-			response.sendRedirect("list");
-			
-		} else {
-			RequestDispatcher rd = request.getRequestDispatcher("boardReg.jsp");
-			rd.forward(request, response);	
-		}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		request.setAttribute("title", "글등록");
+		request.setAttribute("view", "boardReg.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("temp.jsp");
+		rd.forward(request, response);			
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
