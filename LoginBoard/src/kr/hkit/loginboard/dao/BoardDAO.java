@@ -17,7 +17,10 @@ public class BoardDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
-		String sql = " SELECT * FROM t_board ";
+		String sql = " SELECT A.i_board, A.title, A.rdate, B.nm as user_nm"
+				+ " FROM t_board A INNER JOIN t_user B"
+				+ " ON A.i_user = B.i_user "
+				+ " ORDER BY A.i_board DESC ";
 		
 		try {
 			con = CommonDAO.getCon();
@@ -28,6 +31,9 @@ public class BoardDAO {
 				vo.setI_board(rs.getInt("i_board"));
 				vo.setTitle(rs.getString("title"));
 				vo.setRdate(rs.getString("rdate"));
+				vo.setUser_nm(rs.getString("user_nm"));
+				
+				list.add(vo);
 			}
 			
 		} catch (ClassNotFoundException | SQLException e) {			

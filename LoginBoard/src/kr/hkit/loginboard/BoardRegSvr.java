@@ -21,10 +21,8 @@ public class BoardRegSvr extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO)session.getAttribute("loginUser");
-		System.out.println("i_user : " + vo.getI_user());
 		
-		int i_user = vo.getI_user();
-		if(i_user == 0) {
+		if(vo == null) {
 			response.sendRedirect("list");
 			
 		} else {
@@ -34,6 +32,7 @@ public class BoardRegSvr extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO)session.getAttribute("loginUser");
 		
