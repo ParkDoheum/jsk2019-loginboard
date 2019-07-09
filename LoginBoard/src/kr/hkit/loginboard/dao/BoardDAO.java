@@ -11,6 +11,34 @@ import kr.hkit.loginboard.vo.BoardVO;
 
 public class BoardDAO {
 	
+	public static int updBoard(BoardVO vo) {
+		int result = 0;
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		String sql = " update t_board set title = ?, "
+				+ " content = ? "
+				+ " where i_board = ? ";
+		
+		try {
+			con = CommonDAO.getCon();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, vo.getTitle());
+			ps.setString(2, vo.getContent());
+			ps.setInt(3, vo.getI_board());
+			
+			result = ps.executeUpdate();
+			
+		} catch (ClassNotFoundException | SQLException e) {			
+			e.printStackTrace();
+		} finally {
+			CommonDAO.close(con, ps, null);
+		}
+				
+		return result;
+	}
+	
 	public static int delBoard(BoardVO vo) {
 		int result = 0;
 		

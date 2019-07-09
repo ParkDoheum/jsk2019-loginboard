@@ -14,7 +14,7 @@
 </div>
 <div>
 	<% if(userVO != null && userVO.getI_user() == boardVO.getI_user()) {%>
-		<button>수정</button>
+		<a href="boardMod?i_board=<%=boardVO.getI_board()%>"><button>수정</button></a>
 		<a href="boardDel?i_board=<%=boardVO.getI_board()%>"><button>삭제</button></a>	
 	<% } %>
 </div>
